@@ -1,16 +1,15 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "expo/tsconfig.base.json",
   "compilerOptions": {
     "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "noEmit": true,
+    "types": [
+      "expo",
+      "expo-router"
+    ]
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    ".",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]
