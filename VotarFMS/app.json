@@ -6,10 +6,11 @@
     "orientation": "portrait",
     "scheme": "votarfms",
     "userInterfaceStyle": "light",
+    "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/icon.png",
       "resizeMode": "cover",
-      "backgroundColor": "#6860A1"
+      "backgroundColor": "#b80e0e"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
