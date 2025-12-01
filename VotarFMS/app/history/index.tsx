@@ -5,9 +5,10 @@ import {
 import { Router, useRouter } from "expo-router";
 import { AppButton } from "../../components/AppButton";
 import { SummaryList } from "../../components/SummaryList";
-import { Banner, interstitial } from "../../components/Ads";
+import { Banner } from "../../components/Ads";
 import { useHistory } from "../../context/HistoryContext";
 import { BattleRecord } from "../../types";
+import { showInterstitial } from "../../utils/showInterstitial";
 
 export const BattleHistoryScreen = () => {
   const router: Router = useRouter();
@@ -15,7 +16,11 @@ export const BattleHistoryScreen = () => {
   const [selected, setSelected] = useState<BattleRecord | null>(null);
 
   useEffect(() => {
-    interstitial(process.env.EXPO_PUBLIC_INTERS_WATCH_TABLES_AD_ID ?? "");
+    try {
+      showInterstitial(process.env.EXPO_PUBLIC_INTERS_WATCH_TABLES_AD_ID ?? "");
+    } catch (error) {
+      console.warn("Error showing interstitial:", error);
+    }
   }, []);
 
   const confirmDelete = (record: BattleRecord) => {

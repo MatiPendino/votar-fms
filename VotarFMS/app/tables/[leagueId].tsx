@@ -2,18 +2,23 @@ import { useEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import MCRow from "../../components/tables/MCRow";
-import { Banner, interstitial } from "../../components/Ads";
+import { Banner } from "../../components/Ads";
 import NoTable from "../../components/tables/NoTable";
 import { Loading } from "../../components/Loading";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { useStandings } from "../../hooks/useStandings";
+import { showInterstitial } from "../../utils/showInterstitial";
 
 export const TableDetail = () => {
   const { leagueId } = useLocalSearchParams();
   const { data, error, isPending } = useStandings(Number(leagueId));
 
   useEffect(() => {
-    interstitial(process.env.EXPO_PUBLIC_INTERS_TABLES_AD_ID ?? "");
+    try {
+      showInterstitial(process.env.EXPO_PUBLIC_INTERS_TABLES_AD_ID ?? "");
+    } catch (error) {
+      console.warn("Error showing interstitial:", error);
+    }
   }, []);
 
   if (!data) return <NoTable />;
